@@ -71,3 +71,6 @@ typings/
 
 # Serverless directories
 .serverless
+
+# Keys file
+/config/keys.js
