@@ -6,6 +6,9 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
 
+// Load Input Validation
+const validateRegisterInput = require("../../validation/register");
+
 // Load user model
 const User = require("../../models/User");
 
@@ -19,9 +22,19 @@ router.get("/test", (req, res) => res.json({ msg: "Users Works" }));
 // @access  Public
 // we look for a matching email in db, we could call backs or promises
 router.post("/register", (req, res) => {
+  // destructuring to pull errors out of function
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  //Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ email: "email already exists" });
+      //now we can use the newly added errors object from validation
+      errors.email = "Email already exists";
+      return res.status(400).json(erros);
     } else {
       const avatar = gravatar.url(req.body.email, {
         s: "200", //Size
