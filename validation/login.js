@@ -7,12 +7,15 @@ module.exports = function validateLoginInput(data) {
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
 
-  if (Validator.isEmpty(data.email)) {
-    errors.email = "Email field is required";
-  }
+  // changed order of validation because if Email is empty both of these
+  // will be true and the last one is the one that will output.
   if (!Validator.isEmail(data.email)) {
     errors.email = "Email is invalid";
   }
+  if (Validator.isEmpty(data.email)) {
+    errors.email = "Email field is required";
+  }
+
   if (Validator.isEmpty(data.password)) {
     errors.password = "Password field is required";
   }
