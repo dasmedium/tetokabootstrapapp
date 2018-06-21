@@ -71,7 +71,7 @@ router.post(
           { user: req.user.id },
           { $set: profileFields },
           { new: true }
-        );
+        ).then(profile => res.json(profile));
       }
     });
   }
