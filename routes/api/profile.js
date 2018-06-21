@@ -7,7 +7,7 @@ const passport = require("passport");
 const validateProfileInput = require("../../validation/profile");
 
 // Load Profile model
-const profile = require("../../models/Profile");
+const Profile = require("../../models/Profile");
 // Load User profile
 const User = require("../../models/User");
 
@@ -28,7 +28,7 @@ router.get(
       .then(profile => {
         if (!profile) {
           errors.noprofile = "There is no profile for this user";
-          res.status(404).json(errors);
+          return res.status(404).json(errors);
         }
         res.json(profile);
       })
@@ -52,18 +52,18 @@ router.post(
     }
     // Get fields
     const profileFields = {};
-    profileFields.use = req.user.id;
+    profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.company) profileFields.company = req.body.company;
     if (req.body.website) profileFields.website = req.body.website;
     if (req.body.location) profileFields.location = req.body.location;
-    if (req.body.bio) profileFields.bio = req.body.bio;
     if (req.body.status) profileFields.status = req.body.status;
+    if (req.body.bio) profileFields.bio = req.body.bio;
     if (req.body.githubusername)
       profileFields.githubusername = req.body.githubusername;
 
     // Skills Split into an array
-    if (typeof req.body.skills != "undefined") {
+    if (typeof req.body.skills !== "undefined") {
       profileFields.skills = req.body.skills.split(",");
     }
     // Social
@@ -91,8 +91,8 @@ router.post(
             errors.handle = "That handle already exists";
             res.status(400).json(errors);
           }
-          // Save profile
-          new Profile(profile).save().then(profile => res.json(profile));
+          // Save/Create profile
+          new Profile(profileFields).save().then(profile => res.json(profile));
         });
       }
     });
