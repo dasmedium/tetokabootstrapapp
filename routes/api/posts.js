@@ -32,7 +32,7 @@ router.post(
       text: req.body.text,
       name: req.body.name,
       // we can pull these values from app state - redux
-      avatar: req.body.name,
+      avatar: req.body.avatar,
       user: req.user.id
     });
     newPost.save().then(post => res.json(post));
