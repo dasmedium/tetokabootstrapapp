@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
     .then(post => res.json(post))
-    .catch(err => res.status(404));
+    .catch(err => res.status(404).json({ msg: "No such post" }));
 });
 
 // @route   POST api/post
