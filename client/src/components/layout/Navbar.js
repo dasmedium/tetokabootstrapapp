@@ -7,7 +7,7 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
           <a className="navbar-brand" href="landing.html">
-            Das Medium
+            Tetoka
           </a>
           <button
             className="navbar-toggler"
@@ -23,7 +23,7 @@ class Navbar extends Component {
               <li className="nav-item">
                 <a className="nav-link" href="profiles.html">
                   {" "}
-                  Developers
+                  Members
                 </a>
               </li>
             </ul>
