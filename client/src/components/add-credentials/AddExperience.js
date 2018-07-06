@@ -33,13 +33,6 @@ class AddExperience extends Component {
     }
   }
 
-  onChange(e) {
-    e.preventDefault();
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
   onSubmit(e) {
     e.preventDefault();
     const profileData = {
@@ -49,14 +42,16 @@ class AddExperience extends Component {
       from: this.state.from,
       to: this.state.to,
       current: this.state.current,
-      description: this.state.description,
-      disabled: this.state.disabled
+      description: this.state.description
     };
     this.props.addExperience(profileData, this.props.history);
   }
 
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   onCheck(e) {
-    e.preventDefault();
     this.setState({
       disabled: !this.state.disabled,
       current: !this.state.current
