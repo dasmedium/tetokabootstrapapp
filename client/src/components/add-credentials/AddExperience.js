@@ -58,7 +58,8 @@ class AddExperience extends Component {
   onCheck(e) {
     e.preventDefault();
     this.setState({
-      disabled: true
+      disabled: !this.state.disabled,
+      current: !this.state.current
     });
   }
 
