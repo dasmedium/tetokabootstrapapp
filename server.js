@@ -9,6 +9,8 @@ const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 
+const app = express();
+
 // Server static assets if in Production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
@@ -17,8 +19,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
-const app = express();
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
