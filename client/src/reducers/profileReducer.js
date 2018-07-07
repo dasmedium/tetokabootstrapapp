@@ -4,7 +4,6 @@ import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE
 } from "../actions/types";
-import { stat } from "fs";
 
 const initialState = {
   profile: null,
