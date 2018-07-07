@@ -59,4 +59,4 @@ Education.propTypes = {
 export default connect(
   null,
   { deleteEducation }
-)(Experience);
+)(Education);
