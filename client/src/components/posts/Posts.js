@@ -6,6 +6,10 @@ import Spinner from "../common/Spinner";
 import { getPosts } from "../../actions/postActions";
 
 class Posts extends Component {
+  componentDidMount() {
+    this.props.getPosts();
+  }
+
   render() {
     return (
       <div className="feed">
@@ -22,6 +26,7 @@ class Posts extends Component {
 }
 
 Posts.propTypes = {
+  getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired
 };
 
