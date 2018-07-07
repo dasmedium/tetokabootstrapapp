@@ -73,8 +73,8 @@ typings/
 # Serverless directories
 .serverless
 
-# Keys file
-/config/keys.js
+
+
 
 # Theme files
 /themefiles
