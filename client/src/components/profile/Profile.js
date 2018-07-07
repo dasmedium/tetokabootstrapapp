@@ -19,7 +19,14 @@ class Profile extends Component {
   }
 
   render() {
-    return <div />;
+    return (
+      <div>
+        <ProfileHeader />
+        <ProfileAbout />
+        <ProfileCreds />
+        <ProfileGithub />
+      </div>
+    );
   }
 }
 
