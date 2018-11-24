@@ -5,9 +5,16 @@ import isEmpty from "../../validation/is-empty";
 class ProfileAbout extends Component {
   render() {
     const { profile } = this.props;
+    const UserFirstName = () => {
+      if (profile.user !== null) {
+        return profile.user.name.trim().split(" ")[0];
+      } else {
+        return "Inactive User";
+      }
+    };
 
     // Get first name
-    const firstName = profile.user.name.trim().split(" ")[0];
+    const firstName = <UserFirstName />;
 
     // Skill List
     const skills = profile.skills.map((skill, index) => (

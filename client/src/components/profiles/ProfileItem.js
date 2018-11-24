@@ -7,14 +7,34 @@ class ProfileItem extends Component {
   render() {
     const { profile } = this.props;
 
+    const AvatarIcon = () => {
+      if (profile.user !== null) {
+        return (
+          <img src={profile.user.avatar} alt="" className="rounded-circle" />
+        );
+      } else {
+        return <i className="far fa-user rounded-circle" />;
+      }
+    };
+
+    const UserName = () => {
+      if (profile.user !== null) {
+        return profile.user.name;
+      } else {
+        return "Inactive User";
+      }
+    };
+
     return (
       <div className="card card-body bg-light mb-3">
         <div className="row">
           <div className="col-2">
-            <img src={profile.user.avatar} alt="" className="rounded-circle" />
+            <AvatarIcon />
           </div>
           <div className="col-lg-6 col-md-4 col-8">
-            <h3>{profile.user.name}</h3>
+            <h3>
+              <UserName />
+            </h3>
             <p>
               {profile.status}{" "}
               {isEmpty(profile.company) ? null : (
